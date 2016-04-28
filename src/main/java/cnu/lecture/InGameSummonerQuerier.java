@@ -25,6 +25,7 @@ import java.util.HashMap;
 public class InGameSummonerQuerier {
     private final String apiKey;
     private final GameParticipantListener listener;
+    private int howManyPlayersInTheGame;
 
     public InGameSummonerQuerier(String apiKey, GameParticipantListener listener) {
         this.apiKey = apiKey;
@@ -72,4 +73,14 @@ public class InGameSummonerQuerier {
     private StringBuilder mergeWithApiKey(StringBuilder builder) {
         return builder.append("?api_key=").append(apiKey);
     }
+
+    public int getHowManyPlayersInTheGame() {
+        return howManyPlayersInTheGame;
+    }
+
+    public void setHowManyPlayersInTheGame(int howManyPlayersInTheGame) {
+        this.howManyPlayersInTheGame = howManyPlayersInTheGame;
+    }
+    
+    
 }

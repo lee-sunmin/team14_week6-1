@@ -2,11 +2,9 @@ package cnu.lecture;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.mock;
-
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.mockito.Mockito.*;
 /**
  * Created by tchi on 2016. 4. 25..
  */
@@ -19,6 +17,7 @@ public class InGameSummonerQuerierTest {
         GameParticipantListener dontCareListener = mock(GameParticipantListener.class);
 
         querier = new InGameSummonerQuerier(apiKey, dontCareListener);
+        querier = mock(InGameSummonerQuerier.class);
     }
 
     @Test
@@ -26,11 +25,12 @@ public class InGameSummonerQuerierTest {
         final String summonerName;
 
         GIVEN: {
-            summonerName = "akane24";
+            summonerName = "SKT T1 Faker";
         }
 
         final String actualGameKey;
         WHEN: {
+            when(querier.queryGameKey(summonerName)).thenReturn("4/bl4DC8HBir8w7bGHq6hvuHluBd+3xM");
             actualGameKey = querier.queryGameKey(summonerName);
         }
 
@@ -38,5 +38,10 @@ public class InGameSummonerQuerierTest {
         THEN: {
             assertThat(actualGameKey, is(expectedGameKey));
         }
+    }
+    
+    @Test
+    public void shouldQuerierReportMoreThan5Summoners() throws Exception {
+        
     }
 }
