@@ -66,5 +66,12 @@ public class InGameInfo {
         this.participants = participants;
     }
     
+    public int getParticipantsLength() {
+		if (participants == null) {
+			return 0;
+		} else {
+			return participants.length;
+		}
+	}
     
 }
